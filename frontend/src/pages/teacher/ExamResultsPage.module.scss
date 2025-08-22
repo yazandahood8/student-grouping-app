@@ -1,0 +1,67 @@
+/* Theme tokens (scoped) */
+:root {
+  --er-card-radius: 1rem;
+  --er-shadow-soft: 0 6px 20px rgba(0, 0, 0, 0.06);
+  --er-transition-fast: 180ms ease-in-out;
+  --er-transition-med: 240ms ease-in-out;
+}
+
+
+
+/* Card micro-interactions */
+.cardInteractive {
+  border-radius: var(--er-card-radius);
+  transition:
+    transform var(--er-transition-fast),
+    box-shadow var(--er-transition-fast),
+    background-color var(--er-transition-fast);
+
+  &:hover,
+  &:focus-within {
+    transform: translateY(-2px);
+    box-shadow: var(--er-shadow-soft);
+  }
+}
+
+/* Group cards */
+.groupCard {
+  border-radius: calc(var(--er-card-radius) - 0.25rem);
+  transition: background-color var(--er-transition-fast);
+
+  &:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.03);
+  }
+}
+
+/* Members list */
+.memberList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.memberItem {
+  padding-block: 0.25rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--bs-border-color);
+  }
+}
+
+/* Progress density */
+.progressTight {
+  height: 0.75rem;
+  font-size: 0.72rem;
+}
+
+/* Reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .cardInteractive,
+  .groupCard {
+    transition: none;
+    transform: none !important;
+  }
+}

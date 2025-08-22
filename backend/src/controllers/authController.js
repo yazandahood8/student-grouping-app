@@ -63,21 +63,21 @@ export const register = async (req, res) => {
     }
 
     // Hash password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    // const salt = await bcrypt.genSalt(10);
+    // const hashedPassword = await bcrypt.hash(password, salt);
 
     let user;
     if (role === "teacher") {
       user = new Teacher({
         email,
-        password: hashedPassword,
+        password,
         name,
         subject: "General" // Default subject, can be updated later
       });
     } else {
       user = new Student({
         email,
-        password: hashedPassword,
+        password,
         name,
         grade: 10 // Default grade, can be updated later
       });

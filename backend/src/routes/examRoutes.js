@@ -3,15 +3,25 @@ import {
   createExam,
   getExams,
   getMyExams,
-  getExamById
+  getExamById,
 } from "../controllers/examController.js";
 import { authMiddleware } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-router.post("/", authMiddleware, createExam);
-router.get("/", authMiddleware, getExams);
-router.get("/my", authMiddleware, getMyExams);
-router.get("/:id", authMiddleware, getExamById);
+/**
+ * Public endpoints (so the student dashboard can load even before login).
+ * If you want them protected, wrap with authMiddleware() accordingly.
+ */
+router.get("/", getExams);
+
+// Put specific path BEFORE the param route
+router.get("/my", authMiddleware(["teacher"]), getMyExams);
+
+// Param route must come after /my or it would match "my" as :id
+router.get("/:id", getExamById);
+
+// Teacher-only create exam (invoke the factory!)
+router.post("/", authMiddleware(["teacher"]), createExam);
 
 export default router;

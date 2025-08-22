@@ -1,0 +1,28 @@
+:root {
+  --cep-radius: 1rem;
+  --cep-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  --cep-transition: 200ms ease-in-out;
+}
+
+.cardInteractive {
+  border-radius: var(--cep-radius);
+  transition: transform var(--cep-transition), box-shadow var(--cep-transition), background-color var(--cep-transition);
+
+  &:hover,
+  &:focus-within {
+    transform: translateY(-2px);
+    box-shadow: var(--cep-shadow);
+  }
+}
+
+.correctRadio :global(.form-check-input) {
+  cursor: pointer;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .cardInteractive {
+    transition: none;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,73 @@
+/* ============================
+   Theme tokens (scoped)
+   ============================ */
+:root {
+  --exs-card-radius: 1rem;
+  --exs-shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.06);
+  --exs-transition: 200ms ease-in-out;
+}
+
+/* Root wrapper (RTL-safe by using Bootstrap logical utilities for spacing) */
+
+/* Micro-interactions */
+.cardInteractive {
+  border-radius: var(--exs-card-radius);
+  transition:
+    box-shadow var(--exs-transition),
+    transform var(--exs-transition),
+    background-color var(--exs-transition);
+
+  &:hover,
+  &:focus-within {
+    transform: translateY(-2px);
+    box-shadow: var(--exs-shadow-soft);
+  }
+}
+
+/* Distribution */
+.distItem {
+  min-inline-size: 80px; /* logical property for RTL safety */
+  text-align: center;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.5rem;
+}
+
+/* Question item container */
+.questionItem {
+  border-radius: 0.5rem;
+}
+
+/* Progress bar visuals */
+.progressSlim {
+  height: 0.6rem;
+  font-size: 0.7rem;
+}
+
+.barHolder {
+  min-inline-size: 220px; /* replaces min-left/right width; RTL-safe */
+}
+
+/* Option card styling */
+.optionCard {
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.5rem;
+  transition: background-color var(--exs-transition), border-color var(--exs-transition);
+
+  &:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.03);
+  }
+}
+
+.optionCardCorrect {
+  border-color: rgba(var(--bs-success-rgb), 0.6);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .cardInteractive,
+  .optionCard {
+    transition: none;
+    transform: none !important;
+  }
+}

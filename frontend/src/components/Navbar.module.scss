@@ -1,0 +1,60 @@
+:root {
+  --nb-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  --nb-transition: 200ms ease-in-out;
+}
+
+.navbar {
+  box-shadow: var(--nb-shadow);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+  text-decoration: none;
+
+  &:focus-visible {
+    outline: 2px solid var(--bs-focus-ring-color, rgba(13,110,253,.25));
+    outline-offset: 2px;
+    border-radius: .5rem;
+  }
+}
+
+.navLink {
+  position: relative;
+  transition: color var(--nb-transition);
+
+  &:hover,
+  &:focus {
+    color: var(--bs-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--bs-focus-ring-color, rgba(13,110,253,.25));
+    outline-offset: 2px;
+    border-radius: .5rem;
+  }
+}
+
+.roleBadge {
+  text-transform: uppercase;
+  letter-spacing: .02em;
+}
+
+.logoutBtn {
+  transition: transform var(--nb-transition);
+
+  &:hover,
+  &:focus {
+    transform: translateY(-1px);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .logoutBtn,
+  .navLink {
+    transition: none;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,73 @@
+:root {
+  --ec-radius: 1rem;
+  --ec-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  --ec-transition: 200ms ease-in-out;
+}
+
+/* Card micro-interaction */
+.cardInteractive {
+  border-radius: var(--ec-radius);
+  transition: transform var(--ec-transition), box-shadow var(--ec-transition), background-color var(--ec-transition);
+
+  &:hover,
+  &:focus-within {
+    transform: translateY(-2px);
+    box-shadow: var(--ec-shadow);
+  }
+}
+
+/* Success mark animation */
+.successMark {
+  inline-size: 72px;      /* RTL-safe logical width */
+  block-size: 72px;       /* logical height */
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: rgba(var(--bs-success-rgb), 1);
+  box-shadow: 0 10px 30px rgba(var(--bs-success-rgb), 0.3);
+  animation: popIn 300ms ease-in-out both;
+}
+
+.check {
+  font-weight: 800;
+  font-size: 1.75rem;
+  line-height: 1;
+  animation: scaleIn 300ms ease-in-out 80ms both;
+}
+
+/* Score progress */
+.progressSlim {
+  height: .65rem;
+  font-size: .75rem;
+}
+
+/* Monospace ID */
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: .95rem;
+  user-select: all;
+  word-break: break-all;
+}
+
+/* Animations */
+@keyframes popIn {
+  from { transform: scale(.85); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(.8); }
+  to   { transform: scale(1); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .cardInteractive,
+  .successMark,
+  .check {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}

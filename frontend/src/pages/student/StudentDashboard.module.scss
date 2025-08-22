@@ -1,0 +1,35 @@
+:root {
+  --sd-radius: 1rem;
+  --sd-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  --sd-transition: 200ms ease-in-out;
+}
+
+.cardInteractive {
+  border-radius: var(--sd-radius);
+  transition: transform var(--sd-transition), box-shadow var(--sd-transition), background-color var(--sd-transition);
+
+  &:hover,
+  &:focus-within {
+    transform: translateY(-2px);
+    box-shadow: var(--sd-shadow);
+  }
+}
+
+.teacherChip {
+  inline-size: 2rem;         /* RTL-safe logical width */
+  block-size: 2rem;          /* logical height */
+  display: inline-grid;
+  place-items: center;
+  border-radius: 999px;
+  font-weight: 700;
+  background: rgba(var(--bs-primary-rgb), 0.1);
+  color: var(--bs-primary);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .cardInteractive {
+    transition: none;
+    transform: none !important;
+  }
+}

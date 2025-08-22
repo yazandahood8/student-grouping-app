@@ -11,6 +11,8 @@ const studentSchema = new mongoose.Schema({
 // לפני save -> להצפין סיסמה
 studentSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
+  // If it already looks like a bcrypt hash, don't rehash
+  if (/^\$2[aby]\$/.test(this.password)) return next();
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
   next();

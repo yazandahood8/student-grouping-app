@@ -1,0 +1,39 @@
+:root {
+  --lp-radius: 1rem;
+  --lp-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --lp-transition: 200ms ease-in-out;
+}
+
+.root {}
+
+.cardInteractive {
+  border-radius: var(--lp-radius);
+  transition:
+    transform var(--lp-transition),
+    box-shadow var(--lp-transition),
+    background-color var(--lp-transition);
+
+  &:hover,
+  &:focus-within {
+    transform: translateY(-2px);
+    box-shadow: var(--lp-shadow);
+  }
+}
+
+/* Keep button height aligned with input */
+.inputGroupTight :global(.btn),
+.inputGroupTight :global(.form-control) {
+  height: 3rem;
+}
+
+.checkbox :global(.form-check-input) {
+  cursor: pointer;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .cardInteractive {
+    transition: none;
+    transform: none !important;
+  }
+}

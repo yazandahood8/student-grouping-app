@@ -1,0 +1,40 @@
+:root {
+  --rp-radius: 1rem;
+  --rp-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --rp-transition: 200ms ease-in-out;
+}
+
+.root {}
+
+.cardInteractive {
+  border-radius: var(--rp-radius);
+  transition:
+    transform var(--rp-transition),
+    box-shadow var(--rp-transition),
+    background-color var(--rp-transition);
+
+  &:hover,
+  &:focus-within {
+    transform: translateY(-2px);
+    box-shadow: var(--rp-shadow);
+  }
+}
+
+/* Keep appended button height equal to control */
+.inputGroupTight :global(.btn),
+.inputGroupTight :global(.form-control) {
+  height: 3rem;
+}
+
+/* Role buttons */
+.roleBtn {
+  min-inline-size: 8rem; /* RTL-safe logical width */
+}
+
+/* Reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .cardInteractive {
+    transition: none;
+    transform: none !important;
+  }
+}
